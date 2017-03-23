@@ -1,0 +1,7 @@
+site_name: ON-DEMAND SERVICES: TROUBLESHOOTING GUIDE 
+theme: 'material'
+extra:
+  palette:
+    primary: 'teal'
+    accent: 'deep orange'
+  logo: 'images/pivotal-logo.png'
