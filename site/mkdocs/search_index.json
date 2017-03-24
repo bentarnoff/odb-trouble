@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "ODB TROUBLESHOOTING GUIDE\n\n\nUsing BOSH to access logs and SSH\n\n\n\n\nFollow the steps described here to \ntarget your BOSH CLI\n and \nlog-in to your CF CLI\n\n\n\n\nAccessing broker logs and VM(s)\n\n\n\n\nIdentify the ODB deployment using \nbosh deployments\n\n\nDownload the ODB manifest using \nbosh download manifest \nodb-deployment-name\n odb.yml\n\n\nSelect the ODB deployment using \nbosh deployment odb.yml\n\n\nView VMs in the deployment using \nbosh instances\n\n\nDownload broker logs by using the \nbosh logs \ninstance-id\n command\n\n\n\n\nAccessing service instance logs and VM(s)\n\n\n\n\n\n\nTo target an individual service instance deployment, retrieve the \nthe guid of your service instance with the CF CLI command \n$ cf service \n{\nYOUR_SERVICE\n}\n --guid\n\n\n\n\n\n\nPre-pend the text \"service_instance-\" to the guid you just obtained to create the ID that BOSH uses for your service instance (e.g. if your guid is \n1Hy6H\n), this becomes \nservice_instance-1Hy6H\n).\n\n\n\n\n\n\nDownload your bosh manifest for the service using \n$ bosh download manifest service_instance-guid myservice.yml\n\n\n\n\nSelect the deployment using \nbosh deployment myservice.yml\n\n\nView VMs in the deployment using \nbosh instances\n\n\nDownload broker logs by using the \nbosh logs \ninstance-id\n command\n\n\nTo ssh onto the VM use \nbosh ssh \ninstance-id\n\n\n\n\nViewing resource saturation and scaling resources\n\n\nOnce a deployment has been selected, you can use the \nbosh vms --vitals\n or the \nbosh instances --vitals\n commands to view current resource utilization. You can also view process level information by using \nbosh instances --ps\n.\n\n\nParsing a CF error message\n\n\nFailed operations (create, update, bind, unbind, delete) will result in an error message that can be retrieved using the CF cli\n\n\n 1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n$ cf service myservice\n\nService instance: myservice\nService: super-db\nBound apps:\nTags:\nPlan: dedicated-vm\nDescription: Dedicated Instance\nDocumentation url:\nDashboard: \n\nLast Operation\nStatus: create failed\n\nMessage: Instance provisioning failed: There was a problem completing your request. \n\n         Please contact your operations team providing the following information: \n\n         service: redis-acceptance, \n\n         service-instance-guid: ae9e232c-0bd5-4684-af27-1b08b0c70089,\n\n         broker-request-id: 63da3a35-24aa-4183-aec6-db8294506bac, \n\n         task-id: \n442\n, \n\n         operation: create\n\nStarted: \n2017\n-03-13T10:16:55Z\nUpdated: \n2017\n-03-13T10:17:58Z\n\n\n\n\nThe information under the \"Message\" field can be used to debug further. Please provide this information to Pivotal Support when filing a ticket.\n\n\nThe \ntask-id\n field maps to the BOSH task id. For further information on a failed BOSH task, use the \nbosh task \ntask-id\n command in the BOSH CLI.\n\n\nThe \nbroker-request-guid\n maps to the portion of the On-Demand Broker log containing the failed step. Access the broker log via your syslog aggregator, or access bosh logs for the broker by typing \nbosh logs broker 0\n. If you have more than one broker instance, you will need to repeat this process for each instance.\n\n\nCommon Errors\n\n\nBOSH problems\n\n\nService Broker configuration\n\n\nAuthentication\n\n\nNetworking\n\n\nQuotas\n\n\nCleaning up stale references manually\n\n\nFiling a support ticket\n\n\nMonitoring recommendations\n\n\nKnowledge Base (Community)", 
+            "text": "ODB TROUBLESHOOTING GUIDE\n\n\nUsing BOSH and CF to access logs and SSH\n\n\n\n\nFollow the steps described here to \ntarget your BOSH CLI\n and \nlog-in to your CF CLI\n\n\n\n\nAccessing broker logs and VM(s)\n\n\n\n\nIdentify the ODB deployment using \nbosh deployments\n\n\nDownload the ODB manifest using \nbosh download manifest \nodb-deployment-name\n odb.yml\n\n\nSelect the ODB deployment using \nbosh deployment odb.yml\n\n\nView VMs in the deployment using \nbosh instances\n\n\nDownload broker logs by using the \nbosh logs \ninstance-id\n command\n\n\n\n\nAccessing service instance logs and VM(s)\n\n\n\n\n\n\nTo target an individual service instance deployment, retrieve the \nthe guid of your service instance with the CF CLI command \n$ cf service \n{\nYOUR_SERVICE\n}\n --guid\n\n\n\n\n\n\nPre-pend the text \"service_instance-\" to the guid you just obtained to create the ID that BOSH uses for your service instance (e.g. if your guid is \n1Hy6H\n), this becomes \nservice_instance-1Hy6H\n).\n\n\n\n\n\n\nDownload your bosh manifest for the service using \n$ bosh download manifest service_instance-guid myservice.yml\n\n\n\n\nSelect the deployment using \nbosh deployment myservice.yml\n\n\nView VMs in the deployment using \nbosh instances\n\n\nDownload broker logs by using the \nbosh logs \ninstance-id\n command\n\n\nTo ssh onto the VM use \nbosh ssh \ninstance-id\n\n\n\n\nParsing a CF error message\n\n\nFailed operations (create, update, bind, unbind, delete) will result in an error message that can be retrieved using the CF cli\n\n\n 1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n$ cf service myservice\n\nService instance: myservice\nService: super-db\nBound apps:\nTags:\nPlan: dedicated-vm\nDescription: Dedicated Instance\nDocumentation url:\nDashboard: \n\nLast Operation\nStatus: create failed\n\nMessage: Instance provisioning failed: There was a problem completing your request. \n\n         Please contact your operations team providing the following information: \n\n         service: redis-acceptance, \n\n         service-instance-guid: ae9e232c-0bd5-4684-af27-1b08b0c70089,\n\n         broker-request-id: 63da3a35-24aa-4183-aec6-db8294506bac, \n\n         task-id: \n442\n, \n\n         operation: create\n\nStarted: \n2017\n-03-13T10:16:55Z\nUpdated: \n2017\n-03-13T10:17:58Z\n\n\n\n\nThe information under the \"Message\" field can be used to debug further. Please provide this information to Pivotal Support when filing a ticket.\n\n\nThe \ntask-id\n field maps to the BOSH task id. For further information on a failed BOSH task, use the \nbosh task \ntask-id\n command in the BOSH CLI.\n\n\nThe \nbroker-request-guid\n maps to the portion of the On-Demand Broker log containing the failed step. Access the broker log via your syslog aggregator, or access bosh logs for the broker by typing \nbosh logs broker 0\n. If you have more than one broker instance, you will need to repeat this process for each instance.\n\n\nSmoke Tests, Checks, and Errands\n\n\nViewing resource saturation and scaling resources\n\n\nOnce a deployment has been selected, you can use the \nbosh vms --vitals\n or the \nbosh instances --vitals\n commands to view current resource utilization. You can also view process level information by using \nbosh instances --ps\n.\n\n\nMonitoring quota saturation and number of service instances\n\n\nCommon Errors\n\n\nInstallation and Upgrades\n\n\nCertificate issues - ODB requires valid certificates \nDeploy fails\nNetwork issues\nNetwork broker is being deployed to is cannot reach the BOSH director\nNetwork broker is being deployed to can\u2019t reach CF\nRegister broker fails\nTile is being reinstalled and was not correctly uninstalled [existing issue for all tiles]\nSmoke test failed\nNetwork issues\nCF cannot reach the service broker\nCF cannot reach the service instances\nservice network cannot access the BOSH director\nResource sizing issues\nThe resource sizes selected for a given plan are less than the service requires to function.\nService specific issues\n\n\nBOSH problems\n\n\nConfiguration\n\n\nAuthentication\n\n\nNetworking\n\n\nCommon issues include:\n\n\n\n\nNetwork latency issues when connecting to the service instance to create or delete a binding. Solution is to try again or improve network performance\n\n\nNetwork firewall rules are blocking connections from the service broker to the service instance. In OpsManager go into the tile and see the two networks that are configured in the networks tab. Ensure that these networks allow access to each other.\n\n\n\n\nTo validate you can \nbosh ssh\n onto the service broker by first downloading the broker manifest and targeting the deployment, and try to reach the service instance. If no BOSH task-id is in the error message (same error as above, but blank after task-id: ) then look in the broker log using the broker-request-id from the task.\n\n\nThere could be a problem accessing BOSH\u2019s UAA or the BOSH director\nFollow network troubleshooting and check BOSH director is online\n\n\nQuotas\n\n\nPlan Quota issues\nIf the error is \u201cService broker error: The quota for this service plan has been exceeded. Please contact your Operator for help.\u201d then\n\n\nChecking your current plan quota - TODO - write operator facing docs for ODB metrics \nIncrease the plan quota\nLog into ops manager\nReconfigure the quota on the plan page\nDeploy the tile\nFinding who is using the plan quota - TODO CF workflow\n\n\nGlobal Quota issues\nIf the error is \u201cService broker error: The quota for this service has been exceeded. Please contact your Operator for help.\u201d then\nChecking your current global quota - TODO OpsManager workflow\nIncrease the global quota \nLog into ops manager\nReconfigure the quota on the on-demand settings page\nDeploy the tile\nFinding who is using the quota - TODO CF workflow\n\n\nFailing jobs and unhealthy instances\n\n\nAn issue with the service deployment\nRun \nbosh vms --vitals service-instance_$guid\n\nFor additional information run \nbosh instances --ps --vitals\n\nIf the VM is failing you will need to follow the service specific information, as any uninstructed remediatory actions (such as running bosh restart on a VM) may cause issues in the service instance.\n\n\nMissing logs and metrics\n\n\nIf no logs are being emitted by the on-demand broker, check that your syslog forwarding address is correct in Ops Manager.\n\n\nTo verify if metrics are being emitted to the firehose:\n1. Install the \ncf nozzle\n plugin\n\n2. Run \ncf nozzle -f ValueMetric | grep --line-buffered \u201con-demand-broker/\nservice offering name\n\u201d\n\n\nIf no metrics appear within 5 minutes:\nVerify that the broker network has access to the loggregator system, on all required ports. \nContact Pivotal support\n if you are unable to resolve the issue. \n\n\nOrphaned Instances\n\n\nyou can remove the deployment from BOSH and CF directly\n\ncf service --guid\n \nRecord this guid\n\nbosh delete deployment service-instance_$guid\n\nIf this fails:\n\nbosh delete deployment service-instance_$guid --force\n\nThis will ignore any errors while deleting\nWARNING - this may leave IaaS resources\nNext purge the service instance in CF\n\ncf purge-service-instance myservice\n\n\nFiling a support ticket\n\n\nYou can file a support ticket \nhere\n. Please be sure to provide the \nerror message\n from \ncf service \nyour-service\n, in addition to your \nservice broker logs\n and your \nservice instance logs\n to help expedite troubleshooting.\n\n\nKnowledge Base (Community)\n\n\nImagine a world where we autopopulate the first 10 hits from \nhttp://discuss.pivotal.io\n . For now, you'll just have to click on the link.", 
             "title": "Home"
         }, 
         {
@@ -11,9 +11,9 @@
             "title": "ODB TROUBLESHOOTING GUIDE"
         }, 
         {
-            "location": "/#using-bosh-to-access-logs-and-ssh", 
+            "location": "/#using-bosh-and-cf-to-access-logs-and-ssh", 
             "text": "Follow the steps described here to  target your BOSH CLI  and  log-in to your CF CLI", 
-            "title": "Using BOSH to access logs and SSH"
+            "title": "Using BOSH and CF to access logs and SSH"
         }, 
         {
             "location": "/#accessing-broker-logs-and-vms", 
@@ -26,14 +26,24 @@
             "title": "Accessing service instance logs and VM(s)"
         }, 
         {
+            "location": "/#parsing-a-cf-error-message", 
+            "text": "Failed operations (create, update, bind, unbind, delete) will result in an error message that can be retrieved using the CF cli   1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22 $ cf service myservice\n\nService instance: myservice\nService: super-db\nBound apps:\nTags:\nPlan: dedicated-vm\nDescription: Dedicated Instance\nDocumentation url:\nDashboard: \n\nLast Operation\nStatus: create failed Message: Instance provisioning failed: There was a problem completing your request.           Please contact your operations team providing the following information:           service: redis-acceptance,           service-instance-guid: ae9e232c-0bd5-4684-af27-1b08b0c70089,          broker-request-id: 63da3a35-24aa-4183-aec6-db8294506bac,           task-id:  442 ,           operation: create Started:  2017 -03-13T10:16:55Z\nUpdated:  2017 -03-13T10:17:58Z  \nThe information under the \"Message\" field can be used to debug further. Please provide this information to Pivotal Support when filing a ticket.  The  task-id  field maps to the BOSH task id. For further information on a failed BOSH task, use the  bosh task  task-id  command in the BOSH CLI.  The  broker-request-guid  maps to the portion of the On-Demand Broker log containing the failed step. Access the broker log via your syslog aggregator, or access bosh logs for the broker by typing  bosh logs broker 0 . If you have more than one broker instance, you will need to repeat this process for each instance.", 
+            "title": "Parsing a CF error message"
+        }, 
+        {
+            "location": "/#smoke-tests-checks-and-errands", 
+            "text": "", 
+            "title": "Smoke Tests, Checks, and Errands"
+        }, 
+        {
             "location": "/#viewing-resource-saturation-and-scaling-resources", 
             "text": "Once a deployment has been selected, you can use the  bosh vms --vitals  or the  bosh instances --vitals  commands to view current resource utilization. You can also view process level information by using  bosh instances --ps .", 
             "title": "Viewing resource saturation and scaling resources"
         }, 
         {
-            "location": "/#parsing-a-cf-error-message", 
-            "text": "Failed operations (create, update, bind, unbind, delete) will result in an error message that can be retrieved using the CF cli   1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22 $ cf service myservice\n\nService instance: myservice\nService: super-db\nBound apps:\nTags:\nPlan: dedicated-vm\nDescription: Dedicated Instance\nDocumentation url:\nDashboard: \n\nLast Operation\nStatus: create failed Message: Instance provisioning failed: There was a problem completing your request.           Please contact your operations team providing the following information:           service: redis-acceptance,           service-instance-guid: ae9e232c-0bd5-4684-af27-1b08b0c70089,          broker-request-id: 63da3a35-24aa-4183-aec6-db8294506bac,           task-id:  442 ,           operation: create Started:  2017 -03-13T10:16:55Z\nUpdated:  2017 -03-13T10:17:58Z  \nThe information under the \"Message\" field can be used to debug further. Please provide this information to Pivotal Support when filing a ticket.  The  task-id  field maps to the BOSH task id. For further information on a failed BOSH task, use the  bosh task  task-id  command in the BOSH CLI.  The  broker-request-guid  maps to the portion of the On-Demand Broker log containing the failed step. Access the broker log via your syslog aggregator, or access bosh logs for the broker by typing  bosh logs broker 0 . If you have more than one broker instance, you will need to repeat this process for each instance.", 
-            "title": "Parsing a CF error message"
+            "location": "/#monitoring-quota-saturation-and-number-of-service-instances", 
+            "text": "", 
+            "title": "Monitoring quota saturation and number of service instances"
         }, 
         {
             "location": "/#common-errors", 
@@ -41,14 +51,19 @@
             "title": "Common Errors"
         }, 
         {
+            "location": "/#installation-and-upgrades", 
+            "text": "Certificate issues - ODB requires valid certificates \nDeploy fails\nNetwork issues\nNetwork broker is being deployed to is cannot reach the BOSH director\nNetwork broker is being deployed to can\u2019t reach CF\nRegister broker fails\nTile is being reinstalled and was not correctly uninstalled [existing issue for all tiles]\nSmoke test failed\nNetwork issues\nCF cannot reach the service broker\nCF cannot reach the service instances\nservice network cannot access the BOSH director\nResource sizing issues\nThe resource sizes selected for a given plan are less than the service requires to function.\nService specific issues", 
+            "title": "Installation and Upgrades"
+        }, 
+        {
             "location": "/#bosh-problems", 
             "text": "", 
             "title": "BOSH problems"
         }, 
         {
-            "location": "/#service-broker-configuration", 
+            "location": "/#configuration", 
             "text": "", 
-            "title": "Service Broker configuration"
+            "title": "Configuration"
         }, 
         {
             "location": "/#authentication", 
@@ -57,32 +72,37 @@
         }, 
         {
             "location": "/#networking", 
-            "text": "", 
+            "text": "Common issues include:   Network latency issues when connecting to the service instance to create or delete a binding. Solution is to try again or improve network performance  Network firewall rules are blocking connections from the service broker to the service instance. In OpsManager go into the tile and see the two networks that are configured in the networks tab. Ensure that these networks allow access to each other.   To validate you can  bosh ssh  onto the service broker by first downloading the broker manifest and targeting the deployment, and try to reach the service instance. If no BOSH task-id is in the error message (same error as above, but blank after task-id: ) then look in the broker log using the broker-request-id from the task.  There could be a problem accessing BOSH\u2019s UAA or the BOSH director\nFollow network troubleshooting and check BOSH director is online", 
             "title": "Networking"
         }, 
         {
             "location": "/#quotas", 
-            "text": "", 
+            "text": "Plan Quota issues\nIf the error is \u201cService broker error: The quota for this service plan has been exceeded. Please contact your Operator for help.\u201d then  Checking your current plan quota - TODO - write operator facing docs for ODB metrics \nIncrease the plan quota\nLog into ops manager\nReconfigure the quota on the plan page\nDeploy the tile\nFinding who is using the plan quota - TODO CF workflow  Global Quota issues\nIf the error is \u201cService broker error: The quota for this service has been exceeded. Please contact your Operator for help.\u201d then\nChecking your current global quota - TODO OpsManager workflow\nIncrease the global quota \nLog into ops manager\nReconfigure the quota on the on-demand settings page\nDeploy the tile\nFinding who is using the quota - TODO CF workflow", 
             "title": "Quotas"
         }, 
         {
-            "location": "/#cleaning-up-stale-references-manually", 
-            "text": "", 
-            "title": "Cleaning up stale references manually"
+            "location": "/#failing-jobs-and-unhealthy-instances", 
+            "text": "An issue with the service deployment\nRun  bosh vms --vitals service-instance_$guid \nFor additional information run  bosh instances --ps --vitals \nIf the VM is failing you will need to follow the service specific information, as any uninstructed remediatory actions (such as running bosh restart on a VM) may cause issues in the service instance.", 
+            "title": "Failing jobs and unhealthy instances"
+        }, 
+        {
+            "location": "/#missing-logs-and-metrics", 
+            "text": "If no logs are being emitted by the on-demand broker, check that your syslog forwarding address is correct in Ops Manager.  To verify if metrics are being emitted to the firehose:\n1. Install the  cf nozzle  plugin \n2. Run  cf nozzle -f ValueMetric | grep --line-buffered \u201con-demand-broker/ service offering name \u201d  If no metrics appear within 5 minutes:\nVerify that the broker network has access to the loggregator system, on all required ports.  Contact Pivotal support  if you are unable to resolve the issue.", 
+            "title": "Missing logs and metrics"
+        }, 
+        {
+            "location": "/#orphaned-instances", 
+            "text": "you can remove the deployment from BOSH and CF directly cf service --guid  \nRecord this guid bosh delete deployment service-instance_$guid \nIf this fails: bosh delete deployment service-instance_$guid --force \nThis will ignore any errors while deleting\nWARNING - this may leave IaaS resources\nNext purge the service instance in CF cf purge-service-instance myservice", 
+            "title": "Orphaned Instances"
         }, 
         {
             "location": "/#filing-a-support-ticket", 
-            "text": "", 
+            "text": "You can file a support ticket  here . Please be sure to provide the  error message  from  cf service  your-service , in addition to your  service broker logs  and your  service instance logs  to help expedite troubleshooting.", 
             "title": "Filing a support ticket"
         }, 
         {
-            "location": "/#monitoring-recommendations", 
-            "text": "", 
-            "title": "Monitoring recommendations"
-        }, 
-        {
             "location": "/#knowledge-base-community", 
-            "text": "", 
+            "text": "Imagine a world where we autopopulate the first 10 hits from  http://discuss.pivotal.io  . For now, you'll just have to click on the link.", 
             "title": "Knowledge Base (Community)"
         }, 
         {
