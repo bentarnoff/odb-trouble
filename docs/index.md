@@ -1,6 +1,6 @@
 # ODB TROUBLESHOOTING GUIDE
 
-## Using BOSH to access logs and SSH
+## Using BOSH and CF to access logs and SSH
 
 1. Follow the steps described here to [target your BOSH CLI](https://docs.pivotal.io/pivotalcf/1-9/customizing/trouble-advanced.html#prepare) and [log-in to your CF CLI](https://docs.cloudfoundry.org/cf-cli/getting-started.html)
 
