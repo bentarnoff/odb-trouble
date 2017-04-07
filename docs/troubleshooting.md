@@ -15,6 +15,12 @@ The service network cannot access the BOSH director
 8. Service specific issues
 
 ### BOSH problems
+#### Missing BOSH director UUID
+If using the BOSH v1 CLI you need to re-add the director_uuid to the manifest
+```
+bosh status --uuid
+```
+Edit the manifest and add the `director_uuid: ` from the previous command at the top of the manifest. For more, see https://bosh.io/docs/manifest-v2.html#deployment 
 
 #### Large BOSH queue
 
