@@ -575,6 +575,7 @@
 <li>Select the ODB deployment using <code class="codehilite">bosh deployment odb.yml</code></li>
 <li>View VMs in the deployment using <code class="codehilite">bosh instances</code></li>
 <li>Download broker logs by using the <code class="codehilite">bosh logs &lt;instance-id&gt;</code> command</li>
+<li>To ssh onto the VM use <code class="codehilite">bosh ssh &lt;instance-id&gt;</code></li>
 </ol>
 <h3 id="accessing-service-instance-logs-and-vms">Accessing service instance logs and VM(s)<a class="headerlink" href="#accessing-service-instance-logs-and-vms" title="Permanent link">&para;</a></h3>
 <ol>
@@ -583,14 +584,14 @@
 the guid of your service instance with the CF CLI command <code class="codehilite">$ cf service <span class="o">{</span>YOUR_SERVICE<span class="o">}</span> --guid</code></p>
 </li>
 <li>
-<p>Pre-pend the text "service_instance-" to the guid you just obtained to create the ID that BOSH uses for your service instance (e.g. if your guid is <code class="codehilite">1Hy6H</code>), this becomes <code class="codehilite">service_instance-1Hy6H</code>).</p>
+<p>Pre-pend the text <code class="codehilite">service_instance-</code> to the guid you just obtained to create the ID that BOSH uses for your service instance (e.g. if your guid is <code class="codehilite">1Hy6H</code>), this becomes <code class="codehilite">service_instance-1Hy6H</code>).</p>
 </li>
 <li>
 <p>Download your bosh manifest for the service using <code class="codehilite">$ bosh download manifest service_instance-guid myservice.yml</code></p>
 </li>
 <li>Select the deployment using <code class="codehilite">bosh deployment myservice.yml</code></li>
 <li>View VMs in the deployment using <code class="codehilite">bosh instances</code></li>
-<li>Download broker logs by using the <code class="codehilite">bosh logs &lt;instance-id&gt;</code> command</li>
+<li>Download instance logs by using the <code class="codehilite">bosh logs &lt;instance-id&gt;</code> command</li>
 <li>To ssh onto the VM use <code class="codehilite">bosh ssh &lt;instance-id&gt;</code></li>
 </ol>
 <h2 id="parsing-a-cf-error-message">Parsing a CF error message<a class="headerlink" href="#parsing-a-cf-error-message" title="Permanent link">&para;</a></h2>
