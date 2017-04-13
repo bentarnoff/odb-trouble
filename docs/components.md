@@ -51,14 +51,10 @@ You can use `cf ssh` to gain access to the application container and then attemp
 ### Failing jobs and unhealthy instances
 To determine whether there is an issue with the service deployment
 
-```
-$ bosh vms --vitals service-instance_$guid
-```
+<p class='terminal'>$ bosh vms --vitals service-instance_$guid</p>
 
 For additional information 
-```
-$ bosh instances --ps --vitals
-```
+<p class='terminal'>$ bosh instances --ps --vitals</p>
 
 If the VM is failing you will need to follow the service specific information, as any unadvised corrective actions (such as running bosh restart on a VM) may cause issues in the service instance.
 
@@ -75,9 +71,7 @@ To verify if metrics are being emitted to the firehose:
 
 1. Install the [`cf nozzle` plugin](https://github.com/cloudfoundry/firehose-plugin)
 1. Run: 
-```
-$ cf nozzle -f ValueMetric | grep --line-buffered “on-demand-broker/<service offering name>” 
-```
+<p class='terminal'>$ cf nozzle -f ValueMetric | grep --line-buffered “on-demand-broker/<service offering name>”</p>
 
 If no metrics appear within 5 minutes:
 Verify that the broker network has access to the loggregator system, on all required ports. [Contact Pivotal support](#filing-a-support-ticket) if you are unable to resolve the issue. 
@@ -86,9 +80,8 @@ Verify that the broker network has access to the loggregator system, on all requ
 ## Filing a support ticket
 
 You can file a support ticket [here](https://support.pivotal.io/). Please be sure to provide the [error message](techniques/#parsing-a-cf-error-message) from 
-```
-$ cf service <your-service>
-```
+
+<p class='terminal'>$ cf service YOUR-SERVICE</p>
 Please also provide your [service broker logs](techniques/#accessing-broker-logs-and-vms), your [service instance logs](techniques/#accessing-service-instance-logs-and-vms) and [BOSH task output](techniques/#parsing-a-cf-error-message) (if a `task-id` is provided as part of the `cf service <your-service>` output) to help expedite troubleshooting.
 
 ## Knowledge Base (Community)

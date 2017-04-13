@@ -22,9 +22,7 @@
 1. Before reinstalling a tile all previous service instances and service brokers must be deleted from the BOSH director
 1. If the service broker still exists then run the [delete-all-service-instances errand](techniques/#delete-all-service-instances) and then the [deregister-broker errand](techniques/#deregister-broker)
 1. Next delete the service broker BOSH deployment
-```
-$ bosh delete deployment {your_broker_deployment}
-```
+<p class='terminal'>$ bosh delete deployment {your_broker_deployment}</p>
 1. Finally install the tile again
 
 ## Upgrade all service instances errand failed
@@ -47,9 +45,14 @@ Once the deployment is not `failing` you can [re-run the errand](techniques/#upg
 
 ## My app devs report that they cannot create or delete service instances
  
-```
-Instance provisioning failed: There was a problem completing your request. Please contact your operations team providing the following information: service: redis-acceptance, service-instance-guid: ae9e232c-0bd5-4684-af27-1b08b0c70089, broker-request-id: 63da3a35-24aa-4183-aec6-db8294506bac, task-id: 442, operation: create
-``` 
+<pre>
+<code>
+Instance provisioning failed: There was a problem completing your request. 
+Please contact your operations team providing the following information: service: 
+redis-acceptance, service-instance-guid: ae9e232c-0bd5-4684-af27-1b08b0c70089, broker-request-id: 
+63da3a35-24aa-4183-aec6-db8294506bac, task-id: 442, operation: create
+</code>
+</pre>
 
 [Log in to BOSH](https://docs.pivotal.io/pivotalcf/1-9/customizing/trouble-advanced.html#prepare) and target the service instance using the instructions on [parsing a CF error message](techniques/#parsing-a-cf-error-message).
 
@@ -59,9 +62,7 @@ Retrieve the bosh task ID and run
 1. Configuration errors: If the BOSH error shows a problem with the deployment manifest
 
 Get the service-instance-manifest:
-```
-bosh download manifest service-instance_$guid myservice.yml
-```
+<p class='terminal'>bosh download manifest service-instance_$guid myservice.yml</p>
 
 [Access the broker logs](techniques/#accessing-broker-logs-and-vms)  and use the `broker-request-id` from the error message above to search the log for more information.
 
@@ -74,21 +75,24 @@ bosh download manifest service-instance_$guid myservice.yml
 ## My app devs report that they cannot bind to or unbind from service instances
 ### Instance does not exist
 
-```
-Server error, status code: 502, error code: 10001, message: Service broker error: instance does not exist”
-```
+<p class='terminal'>Server error, status code: 502, error code: 10001, message: <br>Service broker error: instance does not exist”</p>
+
 1. Check that the service instance exists in BOSH and CF
-```
-cf service myservice --guid
-```
+<p class='terminal'>$ cf service myservice --guid</p>
 2. Record the guid response and run the bosh vms command
-```bosh vms service-instance_$guid```
+<p class='terminal'>$ bosh vms service-instance_$guid</p>
 If the bosh deployment is not found then it has been deleted from BOSH. Contact Pivotal support for further assistance on recovery steps.
 
 ### Other errors
-```
-Server error, status code: 502, error code: 10001, message: Service broker error: There was a problem completing your request. Please contact your operations team providing the following information: service: example-service, service-instance-guid: 8d69de6c-88c6-4283-b8bc-1c46103714e2, broker-request-id: 15f4f87e-200a-4b1a-b76c-1c4b6597c2e1, operation: bind
-```
+<p class='terminal'>Server error, status code: 502, error code: 
+10001, message: Service broker error: There 
+was a problem completing your request. Please 
+contact your operations team providing the 
+following information: service: example-service, 
+service-instance-guid: 8d69de6c-88c6-4283-b8bc-
+1c46103714e2, broker-request-id: 15f4f87e-200a-
+4b1a-b76c-1c4b6597c2e1, operation: bind
+</p>
 
 To find out the exact issue with creating the binding [access the service broker logs](techniques/#accessing-broker-logs-and-vms)
 
@@ -115,9 +119,11 @@ Make sure that these networks can access each other.
 
 ## My App devs report that they are experiencing request timeouts
 
-```
-Server error, status code: 504, error code: 10001, message: The request to the service broker timed out: https://$broker_url/v2/service_instances/e34046d3-2379-40d0-a318-d54fc7a5b13f/service_bindings/aa635a3b-ef6d-41c3-a23f-55752f3f651b
-```
+<p class='terminal'>Server error, status code: 504, 
+	error code: 10001, message: The request to the 
+	service broker timed out: https://$broker_url/v2/service_instances/e34046
+	d3-2379-40d0-a318-d54fc7a5b13f/service_bindings/
+	aa635a3b-ef6d-41c3-a23f-55752f3f651b</p>
 
 1. Validate that CF has [network connectivity to the service broker](components/#networking). 
 1. Check the BOSH queue size:
@@ -141,10 +147,9 @@ Follow the troubleshooting instructions for [binding a service](#my-app-devs-rep
 ###Plan Quota issues
 If you see the following error:
 
-```
-Message: Service broker error: The quota for this service plan has been exceeded. 
-Please contact your Operator for help.
-```
+<p class='terminal'>Message: Service broker error: 
+The quota for this service plan has been exceeded. 
+Please contact your Operator for help.</p>
 
 1. [Check your current plan quota](#monitoring-quota-saturation-and-number-of-service-instances)
 1. Increase the plan quota
@@ -156,10 +161,10 @@ Please contact your Operator for help.
 ###Global Quota issues
 If you see this error:
 
-```
-Message: Service broker error: The quota for this service has been exceeded. 
+<p class='terminal'>Message: Service broker error: 
+The quota for this service has been exceeded. 
 Please contact your Operator for help.
-```
+</p>
 
 1. Check your current global quota - TODO OpsManager workflow
 1. Increase the global quota 
@@ -171,9 +176,9 @@ Please contact your Operator for help.
 ## Filing a support ticket
 
 You can file a support ticket [here](https://support.pivotal.io/). Please be sure to provide the [error message](techniques/#parsing-a-cf-error-message) from 
-```
-$ cf service <your-service>
-```
+
+<p class='terminal'>$ cf service YOUR-SERVICE</p>
+
 Please also provide your [service broker logs](techniques/#accessing-broker-logs-and-vms), your [service instance logs](techniques/#accessing-service-instance-logs-and-vms) and [BOSH task output](techniques/#parsing-a-cf-error-message) (if a `task-id` is provided as part of the `cf service <your-service>` output) to help expedite troubleshooting.
 
 ## Knowledge Base (Community)
