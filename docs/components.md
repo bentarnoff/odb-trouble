@@ -3,14 +3,12 @@
 ## BOSH problems
 ### Missing BOSH director UUID
 If using the BOSH v1 CLI you need to re-add the director_uuid to the manifest
-```
-bosh status --uuid
-```
+<p class='terminal'>$ bosh status --uuid</p>
 Edit the manifest and add the `director_uuid: ` from the previous command at the top of the manifest. For more, see https://bosh.io/docs/manifest-v2.html#deployment 
 
 ### Large BOSH queue
 
-OpsManager currently deploys two BOSH workers. On-demand service brokers will add tasks to the BOSH queue. Until the workers reach the queued items the application developer will see `create in progess` in the CF CLI. 
+OpsManager currently deploys two BOSH workers. On-demand service brokers will add tasks to the BOSH queue. Until the workers reach the queued items the application developer will see `create in progress` in the CF CLI. 
 
 The number of BOSH workers will become configurable in future version of OpsManager.
 

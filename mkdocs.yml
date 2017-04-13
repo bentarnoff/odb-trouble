@@ -11,6 +11,9 @@ extra:
 extra_css:
     - 'css/highlight-fix.css'
     - 'css/solarized_dark.css'
+    - 'css/extras.css'
+    # - 'css/all.css'
+    # - 'css/print.css'
 markdown_extensions:
   - markdown.extensions.admonition
   - markdown.extensions.codehilite(linenums=true)
