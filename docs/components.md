@@ -1,4 +1,4 @@
-# Troubleshooting
+# Components
 
 ## BOSH problems
 ### Missing BOSH director UUID
@@ -41,7 +41,7 @@ Common issues include:
 1. Cloud Foundry application security groups may not be configured to allow access to the service network. This is required to allow applications on the runtime to connect to services.
 1. There could also be a problem accessing BOSH’s UAA or the BOSH director. Follow network troubleshooting and check BOSH director is online
 
-### Validating the service brokers connectivty to service instances
+### Validating the service broker's connectivity to service instances
 
 To validate you can `bosh ssh` onto the service broker by first downloading the broker manifest and targeting the deployment, and try to reach the service instance. If no BOSH task-id is in the error message, then look in the broker log using the broker-request-id from the task.
 
@@ -49,37 +49,6 @@ To validate you can `bosh ssh` onto the service broker by first downloading the 
 
 You can use `cf ssh` to gain access to the application container and then attempt to connect to the service instance using the binding detailed in the VCAP_SERVICES environment variable.
 
-## Quotas
-
-###Plan Quota issues
-If you see the following error:
-
-```
-Message: Service broker error: The quota for this service plan has been exceeded. 
-Please contact your Operator for help.
-```
-
-1. Check your current plan quota - TODO - write operator facing docs for ODB metrics 
-1. Increase the plan quota
-1. Log into ops manager
-1. Reconfigure the quota on the plan page
-1. Deploy the tile
-1. Find who is using the plan quota and take the appropriate action - TODO CF workflow
-
-###Global Quota issues
-If you see this error:
-
-```
-Message: Service broker error: The quota for this service has been exceeded. 
-Please contact your Operator for help.
-```
-
-1. Check your current global quota - TODO OpsManager workflow
-1. Increase the global quota 
-1. Log into ops manager
-1. Reconfigure the quota on the on-demand settings page
-1. Deploy the tile
-1. Find out who is using the quota and take the appropriate action - TODO CF workflow
 
 ### Failing jobs and unhealthy instances
 To determine whether there is an issue with the service deployment
@@ -98,7 +67,11 @@ If the VM is failing you will need to follow the service specific information, a
 ## Missing logs and metrics
 
 
-If no logs are being emitted by the on-demand broker, check that your syslog forwarding address is correct in Ops Manager.
+If no logs are being emitted by the on-demand broker:
+
+1. Ensure you have configured syslog for the tile
+1. Ensure that you have network connectivity between the networks the tile is using and the syslog destination. If the destination is external then you will need to use the [public ip](https://docs.pivotal.io/svc-sdk/odb/0-14/tile.html#public-ip) vm extension feature available in your Ops Manager tile configuration settings.
+
 
 To verify if metrics are being emitted to the firehose:
 
@@ -111,42 +84,14 @@ $ cf nozzle -f ValueMetric | grep --line-buffered “on-demand-broker/<service o
 If no metrics appear within 5 minutes:
 Verify that the broker network has access to the loggregator system, on all required ports. [Contact Pivotal support](#filing-a-support-ticket) if you are unable to resolve the issue. 
 
-## Orphaned Instances
 
-If you have orphaned instances (instances that are recognized by CF but not by BOSH or vice versa), you can remove the deployment from BOSH and CF directly:
-
-1. To find orphaned instances, run the `orphan-deployments` bosh errand
-```
-$ bosh run errand orphan-deployments
-```
-1. Run 
-```
-$ cf service --guid
-``` 
-1. Record this guid
-1. Run
-```
-$ bosh delete deployment service-instance_$guid
-```
-1. If this fails, you can ignore any errors while deleting by running 
-```
-$ bosh delete deployment service-instance_$guid --force
-``` 
-
-	!!! warning
-		This may leave IaaS resources in an unusable state
-
-1. Next purge the service instance in CF
-```
-$ cf purge-service-instance myservice
-```
 ## Filing a support ticket
 
-You can file a support ticket [here](https://support.pivotal.io/). Please be sure to provide the [error message](#parsing-a-cf-error-message) from 
+You can file a support ticket [here](https://support.pivotal.io/). Please be sure to provide the [error message](techniques/#parsing-a-cf-error-message) from 
 ```
 $ cf service <your-service>
-``` 
-Please also provide your [service broker logs](techniques/#accessing-broker-logs-and-vms) and your [service instance logs](techniques/#accessing-service-instance-logs-and-vms) to help expedite troubleshooting.
+```
+Please also provide your [service broker logs](techniques/#accessing-broker-logs-and-vms), your [service instance logs](techniques/#accessing-service-instance-logs-and-vms) and [BOSH task output](techniques/#parsing-a-cf-error-message) (if a `task-id` is provided as part of the `cf service <your-service>` output) to help expedite troubleshooting.
 
 ## Knowledge Base (Community)
 

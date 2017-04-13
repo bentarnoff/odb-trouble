@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.4.1">
+    
+    
+      
+        <title>Errors - ON-DEMAND SERVICES TROUBLESHOOTING GUIDE</title>
+      
+    
+    
+      <script src="../assets/javascripts/modernizr-56ade86843.js"></script>
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application-76741b64bc.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-66fa0d9bba.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../css/highlight-fix.css">
+    
+      <link rel="stylesheet" href="../css/solarized_dark.css">
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="teal" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <a href=".." title="ON-DEMAND SERVICES TROUBLESHOOTING GUIDE" class="md-logo md-header-nav__button">
+            <img src="../images/pivotal-logo.png" width="24" height="24">
+          </a>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+            
+            Errors
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <div class="md-header-nav__source">
+          
+            
+
+
+  
+
+
+  <a href="https://github.com/kdudala1/odb-trouble" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      kdudala1/odb-trouble
+    </div>
+  </a>
+
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    
+      <i class="md-logo md-nav__button">
+        <img src="../images/pivotal-logo.png">
+      </i>
+    
+    ON-DEMAND SERVICES TROUBLESHOOTING GUIDE
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/kdudala1/odb-trouble" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      kdudala1/odb-trouble
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../components/" title="Components" class="md-nav__link">
+      Components
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Errors
+      </label>
+    
+    <a href="./" title="Errors" class="md-nav__link md-nav__link--active">
+      Errors
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-install-failed" title="My install failed" class="md-nav__link">
+    My install failed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reinstalling-a-tile-in-the-same-environment-where-it-was-previously-uninstalled" title="Reinstalling a tile in the same environment where it was previously uninstalled" class="md-nav__link">
+    Reinstalling a tile in the same environment where it was previously uninstalled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-all-service-instances-errand-failed" title="Upgrade all service instances errand failed" class="md-nav__link">
+    Upgrade all service instances errand failed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-all-service-instances-errand-is-taking-a-very-long-time" title="Upgrade all service instances errand is taking a very long time" class="md-nav__link">
+    Upgrade all service instances errand is taking a very long time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-cannot-create-or-delete-service-instances" title="My app devs report that they cannot create or delete service instances" class="md-nav__link">
+    My app devs report that they cannot create or delete service instances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-cannot-bind-to-or-unbind-from-service-instances" title="My app devs report that they cannot bind to or unbind from service instances" class="md-nav__link">
+    My app devs report that they cannot bind to or unbind from service instances
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instance-does-not-exist" title="Instance does not exist" class="md-nav__link">
+    Instance does not exist
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-errors" title="Other errors" class="md-nav__link">
+    Other errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-cannot-connect-to-a-created-service" title="My App devs report that they cannot connect to a created service" class="md-nav__link">
+    My App devs report that they cannot connect to a created service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-are-experiencing-request-timeouts" title="My App devs report that they are experiencing request timeouts" class="md-nav__link">
+    My App devs report that they are experiencing request timeouts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-dev-reports-a-problem-with-creating-or-using-a-service-key" title="App dev reports a problem with creating or using a service key" class="md-nav__link">
+    App dev reports a problem with creating or using a service key
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-errors" title="Create errors" class="md-nav__link">
+    Create errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-errors" title="Use errors" class="md-nav__link">
+    Use errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-dev-reports-quota-errors" title="App dev reports quota errors" class="md-nav__link">
+    App dev reports quota errors
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plan-quota-issues" title="Plan Quota issues" class="md-nav__link">
+    Plan Quota issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-quota-issues" title="Global Quota issues" class="md-nav__link">
+    Global Quota issues
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filing-a-support-ticket" title="Filing a support ticket" class="md-nav__link">
+    Filing a support ticket
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-base-community" title="Knowledge Base (Community)" class="md-nav__link">
+    Knowledge Base (Community)
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../techniques/" title="Techniques" class="md-nav__link">
+      Techniques
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-install-failed" title="My install failed" class="md-nav__link">
+    My install failed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reinstalling-a-tile-in-the-same-environment-where-it-was-previously-uninstalled" title="Reinstalling a tile in the same environment where it was previously uninstalled" class="md-nav__link">
+    Reinstalling a tile in the same environment where it was previously uninstalled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-all-service-instances-errand-failed" title="Upgrade all service instances errand failed" class="md-nav__link">
+    Upgrade all service instances errand failed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-all-service-instances-errand-is-taking-a-very-long-time" title="Upgrade all service instances errand is taking a very long time" class="md-nav__link">
+    Upgrade all service instances errand is taking a very long time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-cannot-create-or-delete-service-instances" title="My app devs report that they cannot create or delete service instances" class="md-nav__link">
+    My app devs report that they cannot create or delete service instances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-cannot-bind-to-or-unbind-from-service-instances" title="My app devs report that they cannot bind to or unbind from service instances" class="md-nav__link">
+    My app devs report that they cannot bind to or unbind from service instances
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instance-does-not-exist" title="Instance does not exist" class="md-nav__link">
+    Instance does not exist
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-errors" title="Other errors" class="md-nav__link">
+    Other errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-cannot-connect-to-a-created-service" title="My App devs report that they cannot connect to a created service" class="md-nav__link">
+    My App devs report that they cannot connect to a created service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-app-devs-report-that-they-are-experiencing-request-timeouts" title="My App devs report that they are experiencing request timeouts" class="md-nav__link">
+    My App devs report that they are experiencing request timeouts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-dev-reports-a-problem-with-creating-or-using-a-service-key" title="App dev reports a problem with creating or using a service key" class="md-nav__link">
+    App dev reports a problem with creating or using a service key
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-errors" title="Create errors" class="md-nav__link">
+    Create errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-errors" title="Use errors" class="md-nav__link">
+    Use errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-dev-reports-quota-errors" title="App dev reports quota errors" class="md-nav__link">
+    App dev reports quota errors
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plan-quota-issues" title="Plan Quota issues" class="md-nav__link">
+    Plan Quota issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-quota-issues" title="Global Quota issues" class="md-nav__link">
+    Global Quota issues
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filing-a-support-ticket" title="Filing a support ticket" class="md-nav__link">
+    Filing a support ticket
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-base-community" title="Knowledge Base (Community)" class="md-nav__link">
+    Knowledge Base (Community)
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kdudala1/odb-trouble/edit/master/docs/errors.md" title="Edit this page" class="md-icon md-content__icon">edit</a>
+                
+                
+                <h1 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h1>
+<h2 id="my-install-failed">My install failed<a class="headerlink" href="#my-install-failed" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Certificate errors - The on-demand service broker requires valid certificates. Ensure that your certificates are valid and <a href="http://docs.pivotal.io/p-mysql/1-9/credential-rotation.html">generate new ones</a> if necessary. </li>
+<li>Deploy fails - Deploys can fail for a variety of reasons. View the logs via Ops Manager to determine why the deploy is failing.</li>
+<li>
+<p><a href="../components/#networking">Networking problems</a> - These can occur when:</p>
+<ul>
+<li>CF cannot reach the service broker</li>
+<li>CF cannot reach the service instances</li>
+<li>The service network cannot access the BOSH director   </li>
+</ul>
+</li>
+<li>
+<p><a href="../techniques/#register-broker">Register broker errand</a> fails</p>
+</li>
+<li>The <a href="../techniques/#smoke-test">Smoke test errand</a> failed</li>
+<li>Resource sizing issues - These occur when the resource sizes selected for a given plan are less than the service requires to function. Check your resource configuration in Ops Manager and ensure that the configuration matches that recommended by the service.</li>
+<li>Other service-specific issues</li>
+</ol>
+<h2 id="reinstalling-a-tile-in-the-same-environment-where-it-was-previously-uninstalled">Reinstalling a tile in the same environment where it was previously uninstalled<a class="headerlink" href="#reinstalling-a-tile-in-the-same-environment-where-it-was-previously-uninstalled" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Ensure that the previous tile was correctly uninstalled</li>
+<li><code class="codehilite">cf login</code> as an admin user</li>
+<li><code class="codehilite">cf m</code> does not list the service</li>
+<li><code class="codehilite">bosh login</code> as an admin user</li>
+<li><code class="codehilite">bosh deployments</code> does not show a deployment for the service. For example no <code class="codehilite">p-concourse-$guid</code> deployment exists</li>
+<li>Before reinstalling a tile all previous service instances and service brokers must be deleted from the BOSH director</li>
+<li>If the service broker still exists then run the <a href="../techniques/#delete-all-service-instances">delete-all-service-instances errand</a> and then the <a href="../techniques/#deregister-broker">deregister-broker errand</a></li>
+<li>Next delete the service broker BOSH deployment
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ bosh delete deployment <span class="o">{</span>your_broker_deployment<span class="o">}</span>
+</pre></div>
+</td></tr></table></li>
+<li>Finally install the tile again</li>
+</ol>
+<h2 id="upgrade-all-service-instances-errand-failed">Upgrade all service instances errand failed<a class="headerlink" href="#upgrade-all-service-instances-errand-failed" title="Permanent link">&para;</a></h2>
+<p>Look at the errand output in the OpsManager log.</p>
+<p>If an instance fails to upgrade, you should debug and fix it before proceeding with running the errand again. This is to stop any failure issues from spreading to other on-demand instances.</p>
+<p>Once the deployment is not <code class="codehilite">failing</code> you can <a href="../techniques/#upgrade-all-service-instances">re-run the errand</a> to upgrade the rest of the instances. </p>
+<h2 id="upgrade-all-service-instances-errand-is-taking-a-very-long-time">Upgrade all service instances errand is taking a very long time<a class="headerlink" href="#upgrade-all-service-instances-errand-is-taking-a-very-long-time" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Depending on the number of service instances the upgrade errands will take ~15-20 minutes per instance if changing any IaaS resources and ~5-10 minutes per instance for changing BOSH releases / configuration. This is IaaS dependant.</li>
+<li>To calculate how long the errand should take multiply the number of instances by 20 minutes. </li>
+<li>If the errand goes on for much longer than this you may want do the following:
+   -ssh onto the errand vm
+   -<code class="codehilite">cd /var/vcap/sys/log</code> and look for the errand output log
+   -<code class="codehilite">tail -f $log</code> and see if the errand is still attempting to upgrade instances. If it is then allow the errand to continue. If it appears to be stuck:
+    -<code class="codehilite">bosh tasks</code> and identify the errand task
+    -<code class="codehilite">bosh cancel task $task_id</code></li>
+<li>You can then <a href="../techniques/#upgrade-all-service-instances">retry running the errand</a></li>
+</ol>
+<h2 id="my-app-devs-report-that-they-cannot-create-or-delete-service-instances">My app devs report that they cannot create or delete service instances<a class="headerlink" href="#my-app-devs-report-that-they-cannot-create-or-delete-service-instances" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Instance provisioning failed: There was a problem completing your request. Please contact your operations team providing the following information: service: redis-acceptance, service-instance-guid: ae9e232c-0bd5-4684-af27-1b08b0c70089, broker-request-id: 63da3a35-24aa-4183-aec6-db8294506bac, task-id: 442, operation: create
+</pre></div>
+</td></tr></table>
+
+<p><a href="https://docs.pivotal.io/pivotalcf/1-9/customizing/trouble-advanced.html#prepare">Log in to BOSH</a> and target the service instance using the instructions on <a href="../techniques/#parsing-a-cf-error-message">parsing a CF error message</a>.</p>
+<p>Retrieve the bosh task ID and run
+<code class="codehilite">bosh task $task-id</code></p>
+<ol>
+<li>Configuration errors: If the BOSH error shows a problem with the deployment manifest</li>
+</ol>
+<p>Get the service-instance-manifest:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>bosh download manifest service-instance_$guid myservice.yml
+</pre></div>
+</td></tr></table></p>
+<p><a href="../techniques/#accessing-broker-logs-and-vms">Access the broker logs</a>  and use the <code class="codehilite">broker-request-id</code> from the error message above to search the log for more information.</p>
+<ol>
+<li>
+<p><a href="../components/#authentication">Authentication errors</a></p>
+</li>
+<li>
+<p><a href="../components/#networking">Network errors</a></p>
+</li>
+<li>
+<p><a href="#app-dev-reports-quota-errors">Quota errors</a> </p>
+</li>
+</ol>
+<h2 id="my-app-devs-report-that-they-cannot-bind-to-or-unbind-from-service-instances">My app devs report that they cannot bind to or unbind from service instances<a class="headerlink" href="#my-app-devs-report-that-they-cannot-bind-to-or-unbind-from-service-instances" title="Permanent link">&para;</a></h2>
+<h3 id="instance-does-not-exist">Instance does not exist<a class="headerlink" href="#instance-does-not-exist" title="Permanent link">&para;</a></h3>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Server error, status code: 502, error code: 10001, message: Service broker error: instance does not exist”
+</pre></div>
+</td></tr></table>
+1. Check that the service instance exists in BOSH and CF
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cf service myservice --guid
+</pre></div>
+</td></tr></table>
+2. Record the guid response and run the bosh vms command
+<code class="codehilite">bosh vms service-instance_$guid</code>
+If the bosh deployment is not found then it has been deleted from BOSH. Contact Pivotal support for further assistance on recovery steps.</p>
+<h3 id="other-errors">Other errors<a class="headerlink" href="#other-errors" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Server error, status code: 502, error code: 10001, message: Service broker error: There was a problem completing your request. Please contact your operations team providing the following information: service: example-service, service-instance-guid: 8d69de6c-88c6-4283-b8bc-1c46103714e2, broker-request-id: 15f4f87e-200a-4b1a-b76c-1c4b6597c2e1, operation: bind
+</pre></div>
+</td></tr></table>
+
+<p>To find out the exact issue with creating the binding <a href="../techniques/#accessing-broker-logs-and-vms">access the service broker logs</a></p>
+<p>Use the broker-request-id from the error message above to search the log for more information. </p>
+<p>Contact Pivotal support for further assistance if you are unable to resolve the problem.</p>
+<ol>
+<li>
+<p><a href="../components/#authentication">Authentication errors</a></p>
+</li>
+<li>
+<p><a href="../components/#networking">Network errors</a></p>
+</li>
+</ol>
+<h2 id="my-app-devs-report-that-they-cannot-connect-to-a-created-service">My App devs report that they cannot connect to a created service<a class="headerlink" href="#my-app-devs-report-that-they-cannot-connect-to-a-created-service" title="Permanent link">&para;</a></h2>
+<p>Ask the user to send application logs that show the connection error. If the error is originating from the service then follow service specific instructions. If the issue appears to be network related then:</p>
+<p>Check that application security groups are configured correctly
+<a href="https://docs.cloudfoundry.org/adminguide/app-sec-groups.html">https://docs.cloudfoundry.org/adminguide/app-sec-groups.html</a>
+Access should be configured for the service network the tile is deployed to
+Ensure that the network the PCF Elastic Runtime tile is deployed to has network access to the service network.
+In OpsManager go into the service tile and see the service network that is configured in the networks tab.
+In OpsManager go into the ERT tile and see the network it is assigned to.
+Make sure that these networks can access each other.</p>
+<h2 id="my-app-devs-report-that-they-are-experiencing-request-timeouts">My App devs report that they are experiencing request timeouts<a class="headerlink" href="#my-app-devs-report-that-they-are-experiencing-request-timeouts" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Server error, status code: 504, error code: 10001, message: The request to the service broker timed out: https://$broker_url/v2/service_instances/e34046d3-2379-40d0-a318-d54fc7a5b13f/service_bindings/aa635a3b-ef6d-41c3-a23f-55752f3f651b
+</pre></div>
+</td></tr></table>
+
+<ol>
+<li>Validate that CF has <a href="../components/#networking">network connectivity to the service broker</a>. </li>
+<li>Check the BOSH queue size:
+    -Login to BOSH as the admin user
+    -Run <code class="codehilite">bosh tasks</code></li>
+<li>If there are a large number of queued tasks then the system may be under load. BOSH is configured with two workers and one status worker. Advise app developers to try again later once the system is under less load.</li>
+</ol>
+<p>In the future PCF OpsManager will support configuring the number of BOSH workers available to the system.</p>
+<h2 id="app-dev-reports-a-problem-with-creating-or-using-a-service-key">App dev reports a problem with creating or using a service key<a class="headerlink" href="#app-dev-reports-a-problem-with-creating-or-using-a-service-key" title="Permanent link">&para;</a></h2>
+<h3 id="create-errors">Create errors<a class="headerlink" href="#create-errors" title="Permanent link">&para;</a></h3>
+<p>Follow the troubleshooting instructions for <a href="#my-app-devs-report-that-they-cannot-bind-to-or-unbind-from-service-instances">binding a service</a></p>
+<h3 id="use-errors">Use errors<a class="headerlink" href="#use-errors" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Ensure that the network the user is trying to use the service key from has access to the service network the tile is deployed to.</li>
+<li>In OpsManager go into the tile and see the service network that is configured in the networks tab.</li>
+<li>In the BOSH director tile you can find the network definition for this service network.</li>
+</ol>
+<h2 id="app-dev-reports-quota-errors">App dev reports quota errors<a class="headerlink" href="#app-dev-reports-quota-errors" title="Permanent link">&para;</a></h2>
+<h3 id="plan-quota-issues">Plan Quota issues<a class="headerlink" href="#plan-quota-issues" title="Permanent link">&para;</a></h3>
+<p>If you see the following error:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Message</span><span class="o">:</span> <span class="n">Service</span> <span class="n">broker</span> <span class="n">error</span><span class="o">:</span> <span class="n">The</span> <span class="n">quota</span> <span class="k">for</span> <span class="k">this</span> <span class="n">service</span> <span class="n">plan</span> <span class="n">has</span> <span class="n">been</span> <span class="n">exceeded</span><span class="o">.</span> 
+<span class="n">Please</span> <span class="n">contact</span> <span class="n">your</span> <span class="n">Operator</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
+</pre></div>
+</td></tr></table>
+
+<ol>
+<li><a href="#monitoring-quota-saturation-and-number-of-service-instances">Check your current plan quota</a></li>
+<li>Increase the plan quota<ol>
+<li>Log into ops manager</li>
+<li>Reconfigure the quota on the plan page</li>
+<li>Deploy the tile</li>
+</ol>
+</li>
+<li><a href="">Find out who is using the plan quota</a> and take the appropriate action</li>
+</ol>
+<h3 id="global-quota-issues">Global Quota issues<a class="headerlink" href="#global-quota-issues" title="Permanent link">&para;</a></h3>
+<p>If you see this error:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Message</span><span class="o">:</span> <span class="n">Service</span> <span class="n">broker</span> <span class="n">error</span><span class="o">:</span> <span class="n">The</span> <span class="n">quota</span> <span class="k">for</span> <span class="k">this</span> <span class="n">service</span> <span class="n">has</span> <span class="n">been</span> <span class="n">exceeded</span><span class="o">.</span> 
+<span class="n">Please</span> <span class="n">contact</span> <span class="n">your</span> <span class="n">Operator</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
+</pre></div>
+</td></tr></table>
+
+<ol>
+<li>Check your current global quota - TODO OpsManager workflow</li>
+<li>Increase the global quota </li>
+<li>Log into ops manager</li>
+<li>Reconfigure the quota on the on-demand settings page</li>
+<li>Deploy the tile</li>
+<li>Find out who is using the quota and take the appropriate action - TODO CF workflow</li>
+</ol>
+<h2 id="filing-a-support-ticket">Filing a support ticket<a class="headerlink" href="#filing-a-support-ticket" title="Permanent link">&para;</a></h2>
+<p>You can file a support ticket <a href="https://support.pivotal.io/">here</a>. Please be sure to provide the <a href="../techniques/#parsing-a-cf-error-message">error message</a> from 
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ cf service &lt;your-service&gt;
+</pre></div>
+</td></tr></table>
+Please also provide your <a href="../techniques/#accessing-broker-logs-and-vms">service broker logs</a>, your <a href="../techniques/#accessing-service-instance-logs-and-vms">service instance logs</a> and <a href="../techniques/#parsing-a-cf-error-message">BOSH task output</a> (if a <code class="codehilite">task-id</code> is provided as part of the <code class="codehilite">cf service &lt;your-service&gt;</code> output) to help expedite troubleshooting.</p>
+<h2 id="knowledge-base-community">Knowledge Base (Community)<a class="headerlink" href="#knowledge-base-community" title="Permanent link">&para;</a></h2>
+<p>Imagine a world where we autopopulate the first 10 hits from <a href="http://discuss.pivotal.io">http://discuss.pivotal.io</a> . For now, you'll just have to click on the link.</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../components/" title="Components" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Components
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../techniques/" title="Techniques" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Techniques
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application-3964c0cb56.js"></script>
+      <script>app.initialize({url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
